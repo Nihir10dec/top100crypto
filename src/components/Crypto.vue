@@ -17,6 +17,7 @@
     :items-per-page="5"
     class="elevation-1"
     :search="search"
+    :footer-props = "{'items-per-page-options': [10, 25, 50, 75, 100]}"
   >
   <template v-slot:[`item.icon`]="{ item }">
     <img :src="item.icon" style="width: 30px; height: 30px" />    
@@ -32,6 +33,7 @@
     data () {
       return {
         search: '',
+        
         headers: [
           { text: 'Currency Icon', align: 'start', value: 'icon',},
           { text: 'Currency Name', value: 'name' },
