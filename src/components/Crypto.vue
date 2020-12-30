@@ -1,50 +1,52 @@
 <template>
+<v-card>
+    <v-card-title>
+      Top 100 Crypto Currency
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>
   <v-data-table
     :headers="headers"
     :items="coins"
     :items-per-page="5"
     class="elevation-1"
+    :search="search"
   >
   <template v-slot:[`item.icon`]="{ item }">
     <img :src="item.icon" style="width: 30px; height: 30px" />    
-    </template>
+  </template>
+  
+  
   </v-data-table>
+</v-card>
 </template>
 
 <script>
   export default {
     data () {
       return {
+        search: '',
         headers: [
-          {
-            text: 'Currency Icon',
-            align: 'start',
-            value: 'icon',
-          },
+          { text: 'Currency Icon', align: 'start', value: 'icon',},
           { text: 'Currency Name', value: 'name' },
           { text: 'Currency Symbol', value: 'symbol' },
-          { text: 'Currency Price', value: 'price' },
-          { text: 'Currency Price Change ', value: 'price_change' },
+          { text: 'Currency Price ($)', value: 'price' },
+          { text: 'Currency Price Change (%)', value: 'price_change' },
           
         ],
-        coins: [],
       }
     },
-    methods: {
-    loadData: async function () {
-    let response = await fetch("https://api.coinranking.com/v1/public/coins/?limit=100");
-    let obj = await response.json();
-    let coins = obj.data.coins;
-    this.coins = coins.map(coin => {return { "icon": coin.iconUrl, "name": coin.name , "symbol" : coin.symbol , "price": coin.price , "price_change": coin.change}})
-    }
+  computed: {
+      coins(){
+      return this.$store.getters.getCoins;
+      }
   },
-  async mounted () {
-    this.loadData();
-
-    setInterval(function () {
-      // console.log("every 3 sec")
-      this.loadData();
-    }.bind(this), 2000); 
-  }}
+  }
   
 </script>

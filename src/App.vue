@@ -14,7 +14,7 @@
           transition="scale-transition"
           width="40"
         />
-        Top 100 Crypto Currency List
+        TranZact
         
       </div>
 
@@ -23,7 +23,9 @@
     </v-app-bar>
 
     <v-main>
+      <v-container>
       <Crypto/>
+      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -33,7 +35,11 @@ import Crypto from './components/Crypto';
 
 export default {
   name: 'App',
-
+  mounted(){
+    setInterval(() => { 
+      this.$store.dispatch("fetchcoins")
+    }, 750);
+  },
   components: {
     Crypto,
   },
