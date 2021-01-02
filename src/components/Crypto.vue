@@ -27,7 +27,7 @@
   <template v-slot:[`item.price_change`]="{ item }">
       <span v-bind:class="getColor(item.price_change)" >
         <span v-if="item.price_change > 0"> + </span>
-        {{ item.price_change }}
+        {{ item.price_change }}%
         
       </span>
     </template>
