@@ -27,6 +27,19 @@
       <Crypto/>
       </v-container>
     </v-main>
+    <v-footer padless
+      
+      color="primary"
+      dark
+    >
+    <v-col
+      class="text-center"
+      cols="12"
+    >
+      Developed by <strong><a href="https://www.linkedin.com/in/nihir-shah/" style="color:white; text-decoration: none;
+">Nihir Shah</a></strong> © {{ new Date().getFullYear() }}
+    </v-col>
+    </v-footer>
   </v-app>
 </template>
 

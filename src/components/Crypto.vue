@@ -17,15 +17,12 @@
     :items-per-page="5"
     class="elevation-1"
     :search="search"
-    :footer-props = "{'items-per-page-options': [10, 25, 50, 75, 100]}"
+    :footer-props = "{'items-per-page-options': [10, 25, 50, 100]}"
     :loading = "loading"
   >
   <template v-slot:[`item.icon`]="{ item }">
-    <img :src="item.icon" style="width: 30px; height: 30px" />    
+    <img :src="item.icon" style="width: 35px; height: 35px" />    
   </template>
-  <!-- <template v-slot:[`item.price_change`]="{ item }">
-    <span style="width: 30px; height: 30px ; color:'green' "> {{item.price_change}} </span>
-  </template> -->
   
   <template v-slot:[`item.price_change`]="{ item }">
       <span v-bind:class="getColor(item.price_change)" >
