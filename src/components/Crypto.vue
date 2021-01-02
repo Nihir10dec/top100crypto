@@ -18,6 +18,7 @@
     class="elevation-1"
     :search="search"
     :footer-props = "{'items-per-page-options': [10, 25, 50, 75, 100]}"
+    :loading = "loading"
   >
   <template v-slot:[`item.icon`]="{ item }">
     <img :src="item.icon" style="width: 30px; height: 30px" />    
@@ -30,6 +31,7 @@
       <span v-bind:class="getColor(item.price_change)" >
         <span v-if="item.price_change > 0"> + </span>
         {{ item.price_change }}
+        
       </span>
     </template>
 
@@ -42,7 +44,7 @@
     data () {
       return {
         search: '',
-        
+        loading:true,
         headers: [
           { text: 'Currency Icon', align: 'start', value: 'icon',},
           { text: 'Currency Name', value: 'name' },
@@ -60,8 +62,9 @@
   },
   methods: {
       getColor (change) {
+        this.loading = false;
         if (change > 0) return 'positive'
-        else if (change < 0) return 'negative'
+        else return 'negative'
         
       },
     },

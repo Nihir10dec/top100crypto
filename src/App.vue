@@ -14,7 +14,7 @@
           transition="scale-transition"
           width="40"
         />
-        TranZact
+        Real Time Crypto Currency Rates
         
       </div>
 
