@@ -12,7 +12,7 @@ const actions = {
     let response = await fetch("https://api.coinranking.com/v1/public/coins/?limit=100");
     let obj = await response.json();
     let coins = obj.data.coins.map(coin => {return { "icon": coin.iconUrl, "name": coin.name , "symbol" : coin.symbol , "price": coin.price , "price_change": coin.change}})
-    coins = coins.map(coin => { return {...coin , "price_change" : coin.price_change.toString().replace('-' , '- ')}} )
+    coins = coins.map(coin => { return {...coin , "price_change" : coin.price_change.toString().replace('-' , '- ') , "symbol": coin.symbol.replace(/[.*+?^${}()|[\]\\]/g , '')}} )
     commit('setCoins', coins);
   },
   
